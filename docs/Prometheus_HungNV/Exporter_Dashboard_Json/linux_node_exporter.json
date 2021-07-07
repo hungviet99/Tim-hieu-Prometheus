@@ -39,12 +39,6 @@
       "id": "singlestat",
       "name": "Singlestat",
       "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
     }
   ],
   "annotations": {
@@ -65,7 +59,7 @@
   "gnetId": 1860,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1625632999780,
+  "iteration": 1625645581790,
   "links": [
     {
       "icon": "external link",
@@ -1118,53 +1112,55 @@
       "type": "gauge"
     },
     {
+      "aliasColors": {},
+      "bars": false,
       "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "${DS_PROMETHEUS-1}",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-green",
-                "value": null
-              }
-            ]
-          },
           "unit": "none"
         },
         "overrides": []
       },
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
-        "h": 18,
-        "w": 9,
-        "x": 0,
-        "y": 22
+        "h": 5,
+        "w": 16,
+        "x": 8,
+        "y": 17
       },
+      "hiddenSeries": false,
       "id": 319,
       "interval": null,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
       "links": [],
       "maxDataPoints": 100,
+      "nullPointMode": "null",
       "options": {
-        "colorMode": "background",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "value_and_name"
+        "alertThreshold": true
       },
+      "percentage": false,
       "pluginVersion": "7.5.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
           "exemplar": true,
@@ -1176,8 +1172,48 @@
           "refId": "A"
         }
       ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
       "title": "TCP Connection Status",
-      "type": "stat"
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1192",
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1193",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "collapsed": true,
@@ -1186,7 +1222,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 22
       },
       "id": 272,
       "panels": [
@@ -3097,7 +3133,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 23
       },
       "id": 263,
       "panels": [
@@ -3726,7 +3762,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 24
       },
       "id": 265,
       "panels": [
@@ -4814,7 +4850,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 43
+        "y": 25
       },
       "id": 266,
       "panels": [
@@ -6865,7 +6901,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 44
+        "y": 26
       },
       "id": 267,
       "panels": [
@@ -7381,7 +7417,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 27
       },
       "id": 293,
       "panels": [
@@ -7849,7 +7885,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 28
       },
       "id": 312,
       "panels": [
@@ -8668,7 +8704,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 29
       },
       "id": 269,
       "panels": [
@@ -9445,7 +9481,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 30
       },
       "id": 304,
       "panels": [
@@ -9836,7 +9872,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 31
       },
       "id": 296,
       "panels": [
@@ -10108,7 +10144,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 32
       },
       "id": 270,
       "panels": [
@@ -11746,7 +11782,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 51
+        "y": 33
       },
       "id": 271,
       "panels": [
@@ -12322,7 +12358,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 52
+        "y": 34
       },
       "id": 273,
       "panels": [
@@ -12942,7 +12978,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 53
+        "y": 35
       },
       "id": 274,
       "panels": [
@@ -14329,7 +14365,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 54
+        "y": 36
       },
       "id": 279,
       "panels": [],
@@ -14356,7 +14392,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 55
+        "y": 37
       },
       "hiddenSeries": false,
       "id": 40,
@@ -14460,7 +14496,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 55
+        "y": 37
       },
       "hiddenSeries": false,
       "id": 157,
@@ -14674,7 +14710,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -14705,5 +14741,5 @@
   "timezone": "browser",
   "title": "Linux Node Exporter",
   "uid": "rYdddlPWk",
-  "version": 15
+  "version": 17
 }
