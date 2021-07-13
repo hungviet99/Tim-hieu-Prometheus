@@ -22,8 +22,8 @@
 6. [Cài đặt Libvirt Exporter monitor Libvirt KVM](./docs/12._Install_libvirt_exporter_monitor_kvm.md)
 7. [Cài đặt SNMP Exporter monitor iDRAC](./docs/6._Install_SNMP_monitor_iDRAC.md)
 8. [Cài đặt SNMP Exporter monitor Switch](./docs/11._Install_SNMP_monitor_switch.md)
-9. [Pushgateway](./docs/14._Pushgateway_in_prometheus.md)
-10. [Alerting](./docs/15._Alert_manager.md)
+9. [Khái niệm và cài đặt Pushgateway](./docs/14._Pushgateway_in_prometheus.md)
+10. [Cấu hình Alerting](./docs/15._Alert_manager.md)
 11. [Cấu hình Basic authen cho prometheus](./docs/18._Cau_hinh_basic_authen_cho_prometheus.md)
 
 ### 2.2. Grafana Dashboard
