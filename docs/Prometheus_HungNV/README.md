@@ -24,6 +24,7 @@
 8. [Cài đặt SNMP Exporter monitor Switch](./11._Install_SNMP_monitor_switch.md)
 9. [Pushgateway](./14._Pushgateway_in_prometheus.md)
 10. [Alerting](./15._Alert_manager.md)
+11. [Cấu hình Basic authen cho prometheus](./18._Cau_hinh_basic_authen_cho_prometheus.md)
 
 ### 2.2. Grafana Dashboard
 
