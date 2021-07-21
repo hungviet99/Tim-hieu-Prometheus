@@ -1,0 +1,160 @@
+groups:
+  - name: Instances
+    rules:
+    # Node down
+    - alert: Node down
+      expr: up == 0
+      for: 0m
+      labels:
+        severity: critical
+      annotations:
+        title: Node {{ $labels.instance }} is down
+        description: Failed to scrape {{ $labels.job }} on {{ $labels.instance }} for more than 1 minutes. Node seems down.
+  
+  - name: Memory
+    rules:
+  # Memory trống dưới 10 %
+    - alert: HostOutOfMemory
+      expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Out of memory (instance {{ $labels.instance }})"
+        description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+  
+  - name: Swap
+    rules:
+  # Swarp trống dưới 50 %
+    - alert: SwapMemory
+      expr: ((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes ) * 100 > 50
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Swap memory (instance {{ $labels.instance }})"
+        description: "Swap Using > 50% \nVALUE = {{ $value }} \nLABELS: {{ $labels }}"
+  
+  - name: Network
+    rules:
+  # Network throughout in bất thường ( > 500 MB/s)
+    - alert: HostUnusualNetworkThroughputIn
+      expr: sum by (instance) (irate(node_network_receive_bytes_total[5m])) / 1024 / 1024 > 500
+      for: 5m
+      labels:
+        severity: info
+      annotations:
+        summary: "Unusual network throughput in (instance {{ $labels.instance }})"
+        description: "Host network interfaces are probably receiving too much data (> 500 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+  
+    - alert: HostUnusualNetworkThroughputIn
+      expr: sum by (instance) (irate(node_network_receive_bytes_total[5m])) / 1024 / 1024 > 800
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Unusual network throughput in (instance {{ $labels.instance }})"
+        description: "Host network interfaces are probably receiving too much data (> 800 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+  
+  # Network throughout out bất thường 
+    - alert: HostUnusualNetworkThroughputOut
+      expr: sum by (instance) (irate(node_network_transmit_bytes_total[5m])) / 1024 / 1024 > 500
+      for: 5m
+      labels:
+        severity: info
+      annotations:
+        summary: "Unusual network throughput out (instance {{ $labels.instance }})"
+        description: "Host network interfaces are probably sending too much data (> 500 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+    - alert: HostUnusualNetworkThroughputOut
+      expr: sum by (instance) (irate(node_network_transmit_bytes_total[5m])) / 1024 / 1024 > 800
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Unusual network throughput out (instance {{ $labels.instance }})"
+        description: "Host network interfaces are probably sending too much data (> 800 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+  
+  - name: Disk
+    rules:
+  # Tốc độ đọc ghi bất thường của ổ đĩa (>50MB)
+    - alert: HostUnusualDiskReadRate
+      expr: sum by (instance) (irate(node_disk_read_bytes_total[2m])) / 1024 / 1024 > 50
+      for: 5m
+      labels:
+        severity: info
+      annotations:
+        summary: "Unusual disk read rate (instance {{ $labels.instance }})"
+        description: "Disk is probably reading too much data (> 50 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+  
+    - alert: HostUnusualDiskWriteRate
+      expr: sum by (instance) (irate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 50
+      for: 5m
+      labels:
+        severity: info
+      annotations:
+        summary: "Unusual disk write rate (instance {{ $labels.instance }})"
+        description: "Disk is probably writing too much data (> 50 MB/s)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+  
+  # Ổ đĩa hết dung lượng ( < 10%)
+    - alert: OutOfDiskSpace
+      expr: node_filesystem_free_bytes{mountpoint ="/"} / node_filesystem_size_bytes{mountpoint ="/"} * 100 < 20
+      for: 15m
+      labels:
+        severity: info
+      annotations:
+        summary: "Out of disk space (instance {{ $labels.instance }})"
+        description: "Disk is almost full (< 20% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+    - alert: OutOfDiskSpace
+      expr: node_filesystem_free_bytes{mountpoint ="/"} / node_filesystem_size_bytes{mountpoint ="/"} * 100 < 10
+      for: 15m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Out of disk space (instance {{ $labels.instance }})"
+        description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+  
+  - name: CPU
+    rules:
+  # CPU load cao
+    - alert: CpuLoad
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[10m])) * 100) > 65
+      for: 0m
+      labels:
+        severity: info
+      annotations:
+        summary: "CPU load hight (instance {{ $labels.instance }})"
+        description: "CPU load is > 65%\n VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+    - alert: CpuLoad
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[10m])) * 100) > 80
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: "CPU load hight (instance {{ $labels.instance }})"
+        description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+  
+  - name: Inode
+    rules:
+  # Host out of inodes
+  # Disk gần hết các inodes có sẵn (< 10% left)
+    - alert: HostOutOfInodes
+      expr: node_filesystem_files_free{mountpoint ="/"} / node_filesystem_files{mountpoint="/"} * 100 < 10 and ON (instance, device, mountpoint) node_filesystem_readonly{mountpoint="/"} == 0
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: Host out of inodes (instance {{ $labels.instance }})
+        description: "Disk is almost running out of available inodes (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  
+  - name: Kernel
+    rules:
+  # Host kernel version deviations
+  # Có nhiều hơn 1 phiên bản kernel đang chạy
+    - alert: HostKernelVersionDeviations
+      expr: count(sum(label_replace(node_uname_info, "kernel", "$1", "release", "([0-9]+.[0-9]+.[0-9]+).*")) by (kernel)) > 1
+      for: 1h
+      labels:
+        severity: warning
+      annotations:
+        summary: Host kernel version deviations (instance {{ $labels.instance }})
+        description: "Different kernel versions are running\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
