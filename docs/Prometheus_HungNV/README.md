@@ -26,6 +26,7 @@
 10. [Khái niệm và cài đặt Pushgateway](./docs/14._Pushgateway_in_prometheus.md)
 11. [Cấu hình Alerting](./docs/15._Alert_manager.md)
 12. [Cấu hình Basic authen cho prometheus](./docs/18._Cau_hinh_basic_authen_cho_prometheus.md)
+13. [Cài đặt Ceph Exporter monitor Ceph](./docs/22._Cai_dat_ceph_exporter.md)
 
 ### 2.2. Prometheus HA
 
