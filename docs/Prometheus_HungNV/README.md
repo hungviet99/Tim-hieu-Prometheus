@@ -38,6 +38,7 @@
 1. [Import Json để tạo dashboard cho Node Exporter](./docs/7._Import_dashboard_for_node_exporter_from_json_file.md)
 2. [Import Json để tạo dashboard cho SNMP Exporter](./docs/10._Import_dashboard_for_snmp_exporter_from_json_file.md)
 3. [Import Json để tạo dashboard cho Libvirt Exporter](./docs/13._Import_dashboard_for_libvirt_exporter_from_json_file.md)
+4. [Tạo các loại dashboard trên Grafana](./docs/23._Ve_dashboard_tren_grafana.md)
 
 ### 2.4. Note Extend
 
