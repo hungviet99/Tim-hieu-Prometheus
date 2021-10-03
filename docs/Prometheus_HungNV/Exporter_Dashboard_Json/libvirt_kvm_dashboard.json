@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_PROMETHEUS-1",
-      "label": "Prometheus-1",
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
       "description": "",
       "type": "datasource",
       "pluginId": "prometheus",
@@ -14,12 +14,12 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.5.7"
+      "version": "8.0.6"
     },
     {
       "type": "panel",
       "id": "graph",
-      "name": "Graph",
+      "name": "Graph (old)",
       "version": ""
     },
     {
@@ -59,7 +59,7 @@
   "gnetId": 12538,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1625632938561,
+  "iteration": 1632129262756,
   "links": [],
   "panels": [
     {
@@ -83,7 +83,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 4,
         "x": 0,
         "y": 0
@@ -106,31 +106,31 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "exemplar": true,
-          "expr": "count(libvirt_domain_info_vstate)",
+          "expr": "count(libvirt_domain_info_vstate{domain=~\"$domain\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "title": "KVM COUNT VM",
+      "title": "OPS COUNT VM",
       "type": "stat"
     },
     {
       "collapsed": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 4
       },
       "id": 20,
       "panels": [],
-      "title": "$vm_name -- [ INFO_VM ]",
+      "title": "$instance_name -- [ INFO_VM ]",
       "type": "row"
     },
     {
@@ -142,60 +142,30 @@
           },
           "mappings": [
             {
-              "from": "",
-              "id": 1,
-              "text": "Running",
-              "to": "",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "from": "",
-              "id": 2,
-              "text": "Block On Resource",
-              "to": "",
-              "type": 1,
-              "value": "2"
-            },
-            {
-              "from": "",
-              "id": 3,
-              "text": "Paused",
-              "to": "",
-              "type": 1,
-              "value": "3"
-            },
-            {
-              "from": "",
-              "id": 4,
-              "text": "Shut Down",
-              "to": "",
-              "type": 1,
-              "value": "4"
-            },
-            {
-              "from": "",
-              "id": 5,
-              "text": "Shut Off",
-              "to": "",
-              "type": 1,
-              "value": "5"
-            },
-            {
-              "from": "",
-              "id": 6,
-              "text": "Crashed",
-              "to": "",
-              "type": 1,
-              "value": "6"
-            },
-            {
-              "from": "",
-              "id": 7,
-              "text": "Suspend",
-              "to": "",
-              "type": 1,
-              "value": "7"
+              "options": {
+                "1": {
+                  "text": "Running"
+                },
+                "2": {
+                  "text": "Block On Resource"
+                },
+                "3": {
+                  "text": "Paused"
+                },
+                "4": {
+                  "text": "Shut Down"
+                },
+                "5": {
+                  "text": "Shut Off"
+                },
+                "6": {
+                  "text": "Crashed"
+                },
+                "7": {
+                  "text": "Suspend"
+                }
+              },
+              "type": "value"
             }
           ],
           "thresholds": {
@@ -247,7 +217,7 @@
         "h": 3,
         "w": 4,
         "x": 0,
-        "y": 4
+        "y": 5
       },
       "id": 28,
       "options": {
@@ -265,7 +235,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "exemplar": true,
@@ -305,7 +275,7 @@
         "h": 3,
         "w": 3,
         "x": 4,
-        "y": 4
+        "y": 5
       },
       "id": 32,
       "options": {
@@ -323,7 +293,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "exemplar": true,
@@ -337,7 +307,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -357,7 +327,7 @@
         "h": 3,
         "w": 5,
         "x": 7,
-        "y": 4
+        "y": 5
       },
       "id": 6,
       "options": {
@@ -375,7 +345,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "exemplar": true,
@@ -391,7 +361,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
@@ -413,7 +383,7 @@
         "h": 3,
         "w": 5,
         "x": 12,
-        "y": 4
+        "y": 5
       },
       "id": 9,
       "options": {
@@ -431,7 +401,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "exemplar": true,
@@ -449,22 +419,18 @@
     {
       "datasource": null,
       "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 3,
         "w": 7,
         "x": 17,
-        "y": 4
+        "y": 5
       },
       "id": 36,
       "options": {
         "content": "$os",
         "mode": "html"
       },
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "targets": [
         {
           "exemplar": true,
@@ -484,7 +450,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Memory usage of the domain, in bytes",
       "fieldConfig": {
         "defaults": {
@@ -498,7 +464,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 7
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 10,
@@ -521,7 +487,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -591,7 +557,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Amount of CPU time used by the domain, in seconds",
       "fieldConfig": {
         "defaults": {
@@ -605,7 +571,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 7
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 23,
@@ -628,7 +594,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -695,16 +661,16 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 16
       },
       "id": 18,
       "panels": [],
-      "title": "$vm_name -- [ Disk I/O ]",
+      "title": "$instance_name\t-- [ Disk I/O ]",
       "type": "row"
     },
     {
@@ -712,7 +678,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Read - Number of bytes read from a block device, in bytes\n\nWrite - Number of bytes written to a block device, in bytes",
       "fieldConfig": {
         "defaults": {
@@ -726,7 +692,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 17
       },
       "hiddenSeries": false,
       "id": 2,
@@ -751,7 +717,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -829,7 +795,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Read Request - Number of read requests from a block device\n\nWrite  Requests - Number of write requests to a block device",
       "fieldConfig": {
         "defaults": {
@@ -843,7 +809,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 17
       },
       "hiddenSeries": false,
       "id": 21,
@@ -866,7 +832,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -941,16 +907,16 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 24
       },
       "id": 16,
       "panels": [],
-      "title": "$vm_name -- [ NETWORK INTERFAACE ]",
+      "title": "$instance_name\t -- [ NETWORK INTERFAACE ]",
       "type": "row"
     },
     {
@@ -958,7 +924,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "description": "RX - Number of bytes received on a network interface, in bytes\n\nTX - Number of bytes transmitted on a network interface, in bytes.",
       "fieldConfig": {
         "defaults": {
@@ -972,7 +938,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 25
       },
       "hiddenSeries": false,
       "id": 11,
@@ -997,7 +963,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1073,7 +1039,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "description": "RX - Number of packets received on a network interface\n\nTX - Number of packets transmitted on a network interface",
       "fieldConfig": {
         "defaults": {
@@ -1087,7 +1053,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 24
+        "y": 25
       },
       "hiddenSeries": false,
       "id": 26,
@@ -1110,7 +1076,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1185,7 +1151,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS-1}",
+      "datasource": "${DS_PROMETHEUS}",
       "description": "RX Drop - Number of packet receive drops on a network interface.\n\nTX Drop - Number of packet transmit drops on a network interface\n\nRX Error - Number of packet receive errors on a network interface.\n\nTX Error - Number of packet transmit errors on a network interface",
       "fieldConfig": {
         "defaults": {
@@ -1199,7 +1165,7 @@
         "h": 13,
         "w": 12,
         "x": 0,
-        "y": 34
+        "y": 35
       },
       "hiddenSeries": false,
       "id": 13,
@@ -1222,7 +1188,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.7",
+      "pluginVersion": "8.0.6",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1312,8 +1278,8 @@
       }
     }
   ],
-  "refresh": false,
-  "schemaVersion": 27,
+  "refresh": "",
+  "schemaVersion": 30,
   "style": "dark",
   "tags": [
     "libvirt"
@@ -1323,7 +1289,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS-1}",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(go_info{instance=~\".*:9177\"}, job)",
         "description": null,
         "error": null,
@@ -1342,7 +1308,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1350,7 +1315,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS-1}",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(libvirt_domain_info_vstate{job=~\"$job\"},instance)",
         "description": null,
         "error": null,
@@ -1369,7 +1334,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1377,34 +1341,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS-1}",
-        "definition": "label_values(libvirt_domain_info_vstate{job=~\"$job\", instance=~\"$host\"}, domain)",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": true,
-        "label": null,
-        "multi": false,
-        "name": "vm_name",
-        "options": [],
-        "query": {
-          "query": "label_values(libvirt_domain_info_vstate{job=~\"$job\", instance=~\"$host\"}, domain)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS-1}",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(libvirt_domain_block_meta{domain=~\"$vm_name\", source_file!~\".*virtio.*\"}, source_file)",
         "description": "/^.*([a-zA-Z]+(\\/)(.*)+).*$/gm",
         "error": null,
@@ -1423,15 +1360,106 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(libvirt_domain_info_meta{instance=~\"$host\"}, uuid)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "UUID",
+        "multi": false,
+        "name": "uuid",
+        "options": [],
+        "query": {
+          "query": "label_values(libvirt_domain_info_meta{instance=~\"$host\"}, uuid)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(libvirt_domain_info_meta{instance=~\"$host\", uuid=~\"$uuid\"}, instance_name)",
+        "description": "",
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Instance",
+        "multi": false,
+        "name": "instance_name",
+        "options": [],
+        "query": {
+          "query": "label_values(libvirt_domain_info_meta{instance=~\"$host\", uuid=~\"$uuid\"}, instance_name)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(libvirt_domain_info_meta{job=~\"$job\", instance=~\"$host\",  instance_name=~\"$instance_name\"}, domain)",
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "vm_name",
+        "options": [],
+        "query": {
+          "query": "label_values(libvirt_domain_info_meta{job=~\"$job\", instance=~\"$host\",  instance_name=~\"$instance_name\"}, domain)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": "instance.*",
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(libvirt_domain_info_meta, domain)",
+        "description": null,
+        "error": null,
+        "hide": 2,
+        "includeAll": true,
+        "label": null,
+        "multi": false,
+        "name": "domain",
+        "options": [],
+        "query": {
+          "query": "label_values(libvirt_domain_info_meta, domain)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "instance.*",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -1449,6 +1477,6 @@
   },
   "timezone": "",
   "title": "Libvirt Dashboard",
-  "uid": "242K89ZMd",
-  "version": 11
+  "uid": "iCrZIvW7z",
+  "version": 15
 }
